@@ -1,0 +1,18 @@
+numpy 
+pandas 
+tensorflow==2.9.2
+matplotlib
+seaborn
+nltk
+regex
+scikit-learn
+from-root
+google-cloud-storage
+fastapi==0.78.0
+uvicorn==0.18.3
+Jinja2==3.1.2
+PyYAML
+python-box==6.0.2
+ensure==1.0.2
+gdown
+-e .

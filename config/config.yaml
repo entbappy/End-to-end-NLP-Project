@@ -6,3 +6,16 @@ data_ingestion:
   source_URL: https://drive.google.com/file/d/1naVI4wFOR9MjpqQ9My4aV0_Drb1smfzL/view?usp=sharing
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+
+
+data_validation:
+  root_dir: artifacts/data_validation
+  STATUS_FILE: artifacts/data_validation/status.txt
+  ALL_REQUIRED_FILES: ["data.zip", "imbalanced_data.csv", "raw_data.csv"]
+
+
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion

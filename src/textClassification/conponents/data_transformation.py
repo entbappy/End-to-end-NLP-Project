@@ -51,16 +51,6 @@ class DataTransformation:
 
         df['tweet']=df['tweet'].apply(self.data_cleaning)
 
-        x = df['tweet']
-        y = df['label']
-
-        # Let's split the data into train and test
-        x_train,x_test,y_train,y_test = train_test_split(x,y, random_state = 42)
-
-        x_train.to_csv(os.path.join(self.config.root_dir,'x_train.csv'), index=False)
-        x_test.to_csv(os.path.join(self.config.root_dir,'x_test.csv'), index=False)
-
-        y_train.to_csv(os.path.join(self.config.root_dir,'y_train.csv'), index=False)
-        y_test.to_csv(os.path.join(self.config.root_dir,'y_test.csv'), index=False)
+        df.to_csv(os.path.join(self.config.root_dir,'main_df.csv'), index=False)
 
         

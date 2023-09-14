@@ -23,3 +23,14 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    data_path: Path
+    max_words: int
+    max_len: int
+    batch_size: int
+    epochs: int
+    validation_split: float

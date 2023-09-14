@@ -1,1 +1,8 @@
-key: val
+TrainingArguments:
+  max_words: 50000
+  max_len: 300
+  batch_size: 128
+  epochs: 1
+  validation_split: 0.2
+
+ 

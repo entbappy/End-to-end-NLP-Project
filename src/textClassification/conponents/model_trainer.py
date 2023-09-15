@@ -8,6 +8,7 @@ from keras.layers import LSTM, Dense, Embedding, SpatialDropout1D
 from keras.optimizers import RMSprop
 from sklearn.model_selection import train_test_split
 import os
+import json
 from textClassification.entity.config_entity import ModelTrainerConfig
 
 
@@ -26,9 +27,6 @@ class ModelTrainer:
 
         # Let's split the data into train and test
         x_train,x_test,y_train,y_test = train_test_split(x,y, random_state = 42)
-
-        x_test.to_csv(os.path.join(self.config.root_dir,'x_test.csv'), index=False)
-        y_test.to_csv(os.path.join(self.config.root_dir,'y_test.csv'), index=False)
 
         print(len(x_train),len(y_train))
         print(len(x_test),len(y_test))
@@ -62,5 +60,18 @@ class ModelTrainer:
         # starting model training
         model.fit(sequences_matrix,y_train,batch_size=self.config.batch_size,epochs = self.config.epochs,validation_split=self.config.validation_split)
 
+        test_sequences = tokenizer.texts_to_sequences(x_test)
+        test_sequences_matrix = pad_sequences(test_sequences,maxlen=max_len)
+
+        # Model evaluation
+        accr = model.evaluate(test_sequences_matrix,y_test)
+
+        metrics = {"eval": accr}
+
+        with open(os.path.join(self.config.root_dir,'metrics.json'), "w") as file:
+            json.dump(metrics, file)
+
+
         # Let's save the mdoel.
         model.save(os.path.join(self.config.root_dir,'model.h5'))
+
